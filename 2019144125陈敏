@@ -1,0 +1,22 @@
+#coding=utf-8
+import smtplib
+from email.mime.text import MIMEText
+msg_from='2993675414@qq.com'
+passwd='ubfmjufojpsmdhaj'
+msg_to='57820048@qq.com'
+
+subject="2019144125陈敏"
+content="开启校园网：手机ip为10.101.111.17  网址查询为180.129.225.153   开启数据：手机ip为221.3.131.11   网址查询为127.0.0.1"
+msg=MIMEText(content)
+msg['Subject']=subject
+msg['From']=msg_from
+msg['To']=msg_to
+try:
+    s=smtplib.SMTP_SSL("smtp.qq.com",465)
+    s.login(msg_from,passwd)
+    s.sendmail(msg_from,msg_to,msg.as_string())
+    print("发送成功")
+except(s.SMTPException,e):
+    print("发送失败")
+finally:
+    s.quit()
